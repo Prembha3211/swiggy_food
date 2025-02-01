@@ -1,0 +1,25 @@
+import veggies from "/assets/images/veggies.png";
+import sushi from "/assets/images/sushi.png";
+import instamart from "/assets/images/instamart.png";
+import genie from "/assets/images/genie.png";
+import fooddelivery from "/assets/images/fooddelivery.png";
+import dineout from "/assets/images/dineout.png";
+import logo from "/assets/images/logo.png";
+import logo2 from "/assets/images/logo2.png";
+import playstore from "/assets/images/playstore.png";
+import appstore from "/assets/images/appstore.png";
+import bannerhome from "/assets/images/bannerhome.png";
+import loginimg from "/assets/images/loginimg.png";
+
+export const veggiesImg = veggies;
+export const sushiImg = sushi;
+export const instamartImg = instamart;
+export const genieImg = genie;
+export const fooddeliveryImg = fooddelivery;
+export const dineoutImg = dineout;
+export const logoImg = logo;
+export const logo2Img = logo2;
+export const playstoreImg = playstore;
+export const appstoreImg = appstore;
+export const bannerhomeImg = bannerhome;
+export const loginimgImg = loginimg;
