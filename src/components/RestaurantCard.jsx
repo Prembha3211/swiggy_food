@@ -28,7 +28,6 @@ const RestaurantCard = (props) => {
       className="w-[250px] rounded-md transform transition-transform duration-300 hover:scale-105"
     >
       <div className="relative">
-        {/* Image */}
         <img
           className="rounded-lg h-40 w-72 object-cover shadow-2xl"
           alt="res-logo"

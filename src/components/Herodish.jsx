@@ -48,9 +48,9 @@ const Herodish = () => {
         <div className="grid grid-rows-2 grid-flow-col gap-4">
           {imageId.length > 0 ? (
             imageId.map((dish) => (
-              <Link to="/fooddelivery">
+              <Link to="/fooddelivery" key={dish.id}>
                 {" "}
-                <DishesCard key={dish.id} resData={dish} />
+                <DishesCard resData={dish} />
               </Link>
             ))
           ) : (

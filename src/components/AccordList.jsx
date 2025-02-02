@@ -1,8 +1,25 @@
 import React from "react";
 import { CDN_URL } from "../utils/constants";
 import { FaStar, FaTag } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const AccordList = ({ items = [] }) => {
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    const newItem = {
+      id: item.card.info.id,
+      name: item.card.info.name,
+      price: item.card.info.price
+        ? item.card.info.price / 100
+        : item.card.info.defaultPrice / 100,
+      image: CDN_URL + item.card.info.imageId,
+    };
+
+    dispatch(addItem(newItem));
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -42,14 +59,17 @@ const AccordList = ({ items = [] }) => {
               </span>
             </div>
             <p className="text-[1rem] mt-3 font-semibold cursor-pointer text-gray-500">
-              {item.card.info.description.length > 100
+              {item.card.info.description
                 ? item.card.info.description.substring(0, 120) + "... more"
                 : item.card.info.description}
             </p>
           </div>
           <div className="w-48 h-[11rem] p-4 w-3/12">
             <div className="absolute ">
-              <button className="w-28 p-2 bg-white text-green-500 font-extrabold shadow-lg mx-4 my-32 rounded-lg border border-gray-300">
+              <button
+                className="w-28 p-2 bg-white text-green-500 font-extrabold shadow-lg mx-4 my-32 rounded-lg border border-gray-300"
+                onClick={() => handleAddItem(item)}
+              >
                 ADD +
               </button>
             </div>

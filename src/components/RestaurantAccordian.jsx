@@ -3,6 +3,9 @@ import AccordList from "./AccordList";
 import { ChevronDown } from "lucide-react";
 
 const RestaurantAccordian = ({ data }) => {
+  if (!data || !data.title) {
+    return null; // Avoid rendering if data is missing
+  }
   const [showItems, setShowItems] = useState();
   const handleClick = () => {
     setShowItems(!showItems);
@@ -19,7 +22,7 @@ const RestaurantAccordian = ({ data }) => {
             <ChevronDown />
           </span>
         </div>
-        <div>{showItems && <AccordList items={data.itemCards} />}</div>
+        <div>{showItems && <AccordList items={data.itemCards || []} />}</div>
       </div>
     </div>
   );

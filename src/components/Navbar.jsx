@@ -10,11 +10,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { BadgeInfo, BadgePercent } from "lucide-react";
 import LoginForm from "./LoginForm"; // Import LoginForm
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [location, setLocation] = useState("");
   const [filteredLocations, setFilteredLocations] = useState([]);
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const cartItems = useSelector((store) => store.cart.items); // Subscribing to the store using selector
 
   const locations = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai"];
 
@@ -108,10 +112,12 @@ const Navbar = () => {
               <FontAwesomeIcon icon={faSignIn} className="text-gray-800 mt-1" />
               Sign in
             </li>
-            <li className="flex gap-3">
-              <FontAwesomeIcon icon={faShoppingCart} className="mt-1" />
-              Cart
-            </li>
+            <Link to="/cart">
+              <li className="flex gap-3">
+                <FontAwesomeIcon icon={faShoppingCart} className="mt-1" />(
+                {cartItems.length}) Cart
+              </li>
+            </Link>
           </ul>
         </nav>
       </div>

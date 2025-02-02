@@ -6,3 +6,5 @@ export const CDN_URL =
 
 export const MENU_API =
   "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.9690247&lng=72.8205292&restaurantId=";
+
+export const CART_API = "https://www.swiggy.com/mapi/cart_new";
