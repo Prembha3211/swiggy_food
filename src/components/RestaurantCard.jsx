@@ -1,12 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { addItem } from "../utils/cartSlice";
 
-const RestaurantCard = (props) => {
-  const { resData } = props;
+const RestaurantCard = ({ resData }) => {
+  const dispatch = useDispatch();
 
   const {
+    id,
     cloudinaryImageId,
     name,
     avgRating,
@@ -16,16 +19,23 @@ const RestaurantCard = (props) => {
     aggregatedDiscountInfoV3,
   } = resData?.info;
 
-  const displayedCuisines = cuisines.slice(0, 3).join(",");
-  const moreCuisines = cuisines.length > 3;
-
-  const displayedName = name.slice(0, 15);
-  const moreName = name.length > 3;
+  const handleClick = () => {
+    dispatch(
+      addItem({
+        id,
+        areaName,
+        name,
+        cloudinaryImageId,
+        restaurantName: name,
+        restaurantareaName: areaName,
+      })
+    ); // Add restaurant to cart
+  };
 
   return (
     <div
-      data-testid="resCard"
-      className="w-[250px] rounded-md transform transition-transform duration-300 hover:scale-105"
+      onClick={handleClick} // Dispatch image to Redux on click
+      className="w-[250px] rounded-md transform transition-transform duration-300 hover:scale-105 cursor-pointer"
     >
       <div className="relative">
         <img
@@ -33,32 +43,26 @@ const RestaurantCard = (props) => {
           alt="res-logo"
           src={CDN_URL + cloudinaryImageId}
         />
-        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-transparent to-transparent rounded-lg"></div>
-
         {aggregatedDiscountInfoV3 && (
-          <div className="absolute flex bottom-0  text-white px-2 py-1 rounded-md text-xl font-extrabold shadow-md space-x-1">
+          <div className="absolute flex bottom-0 text-white px-2 py-1 rounded-md text-xl font-extrabold shadow-md space-x-1">
             <span>{aggregatedDiscountInfoV3.header}</span>
-            <p className="">{aggregatedDiscountInfoV3.subHeader}</p>
+            <p>{aggregatedDiscountInfoV3.subHeader}</p>
           </div>
         )}
       </div>
 
       <div className="px-2">
-        <h3 className="font-bold mt-2 text-lg">
-          {displayedName}
-          {moreName && <span className="text-gray-100">...</span>}
-        </h3>
+        <h3 className="font-bold mt-2 text-lg">{name}</h3>
         <div className="flex justify-between text-sm">
           <h4>
             <FontAwesomeIcon icon={faStar} className="text-green-400 mr-1" />
             {avgRating} •
           </h4>
-          <h4 className="left-0 mr-36">{slaString}</h4>
+          <h4>{slaString}</h4>
         </div>
         <h4 className="font-semibold overflow-hidden whitespace-nowrap text-gray-500">
-          {displayedCuisines}
-          {moreCuisines && <span className="">...</span>}
+          {cuisines.join(", ")}
         </h4>
         <h4 className="text-gray-500 font-semibold">{areaName}</h4>
       </div>

@@ -21,10 +21,12 @@ const Herodish = () => {
   };
 
   return (
-    <div className="px-40 py-4 ml-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-extrabold ml-4">What's on your mind?</h2>
-        <div className="flex space-x-4 mr-5">
+    <div className="px-4 sm:px-10 md:px-40 py-4">
+      <div className="flex items-center justify-between px-2 sm:px-4">
+        <h2 className="text-xl sm:text-2xl font-extrabold">
+          What's on your mind?
+        </h2>
+        <div className="hidden sm:flex space-x-4">
           <button
             onClick={scrollLeft}
             className="p-2 bg-gray-200 rounded-full shadow-md hover:bg-gray-300 transition"
@@ -40,16 +42,29 @@ const Herodish = () => {
         </div>
       </div>
 
-      {/* Scrollable container with two-row layout */}
+      {/* Scrollable container */}
       <div
         ref={scrollContainerRef}
-        className="flex overflow-x-auto scrollbar-hide p-4"
+        className="overflow-x-auto scrollbar-hide p-4"
       >
-        <div className="grid grid-rows-2 grid-flow-col gap-4">
+        {/* Mobile: 2-row horizontal scrolling */}
+        <div className="sm:hidden grid grid-rows-2 grid-flow-col gap-4 w-max">
           {imageId.length > 0 ? (
             imageId.map((dish) => (
-              <Link to="/fooddelivery" key={dish.id}>
-                {" "}
+              <Link to="/fooddelivery" key={dish.id} className="inline-block">
+                <DishesCard resData={dish} />
+              </Link>
+            ))
+          ) : (
+            <p className="ml-4">No dishes available</p>
+          )}
+        </div>
+
+        {/* Large Screens: 2-row structured grid */}
+        <div className="hidden sm:grid grid-rows-2 grid-flow-col lg:gap-4">
+          {imageId.length > 0 ? (
+            imageId.map((dish) => (
+              <Link to="/fooddelivery" key={dish.id} className="inline-block">
                 <DishesCard resData={dish} />
               </Link>
             ))

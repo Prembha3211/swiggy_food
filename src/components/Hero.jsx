@@ -20,23 +20,23 @@ const Hero = () => {
       <Heronav />
       <div className="bg-orange-600  flex items-center justify-between ">
         {/* Veggies Image */}
-        <div className="flex-shrink-0">
+        <div className=" hidden flex-shrink-0 sm:block">
           <img
             src={veggiesImg}
             alt="veggies"
-            className="h-[400px] w-auto mb-20"
+            className="h-[400px] w-auto mb-20 "
           />
         </div>
 
         {/* Center Content */}
         <div className="text-center flex flex-col items-center justify-center gap-y-11">
-          <h1 className="text-5xl font-bold text-white mt-20">
+          <h1 className="text-xl lg:text-5xl font-bold text-white mt-20">
             Order food and groceries Discover <br /> best restaurants, Swiggy
             it!
           </h1>
           <div className="flex space-x-4 items-center">
             {/* Location Input with Icon */}
-            <div className="relative">
+            <div className="relative hidden sm:block">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <MapPin className="text-gray-500 w-6 h-6 text-orange-500" />
               </span>
@@ -48,7 +48,7 @@ const Hero = () => {
             </div>
 
             {/* Search Input */}
-            <div className="relative w-[30rem]">
+            <div className="relative w-[23rem] lg:w-[30rem]">
               <span className="absolute inset-y-0 right-0 flex items-center pl-3">
                 <Search className="text-gray-500 w-5 h-5 mr-5" />
               </span>
@@ -59,24 +59,27 @@ const Hero = () => {
               />
             </div>
           </div>
-          <div className="flex justify-center cursor-pointer">
+          <div className="grid grid-cols-2 lg:grid-cols-4 justify-center cursor-pointer lg:gap-4">
             <Link to="/fooddelivery">
-              <img src={fooddeliveryImg} className="w-[60rem] h-[22rem]" />
+              <img
+                src={fooddeliveryImg}
+                className="w-full h-full object-cover"
+              />
             </Link>
             <Link to="/instamart">
-              <img src={instamartImg} className="w-[60rem] h-[22rem]" />
+              <img src={instamartImg} className="w-full h-full object-cover" />
             </Link>
             <Link to="/dineout">
-              <img src={dineoutImg} className="w-[60rem] h-[22rem]" />
+              <img src={dineoutImg} className="w-full h-full object-cover" />
             </Link>
             <Link to="/genie">
-              <img src={genieImg} className=" w-[60rem] h-[22rem]" />
+              <img src={genieImg} className="w-full h-full object-cover" />
             </Link>
           </div>
         </div>
 
         {/* Sushi Image */}
-        <div className="flex-shrink-0">
+        <div className=" hidden sm:block flex-shrink-0 ">
           <img src={sushiImg} alt="sushi" className="h-[400px] w-auto mb-20" />
         </div>
       </div>
@@ -86,7 +89,7 @@ const Hero = () => {
       <div>
         <div>
           <div>
-            <img src={bannerhomeImg} alt="banner" className="" />
+            <img src={bannerhomeImg} alt="banner" className="h-28" />
           </div>
         </div>
       </div>
